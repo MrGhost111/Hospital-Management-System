@@ -7,7 +7,7 @@ public class Main {
         // Create and add sample users
         Patient patient = new Patient("P001", "password", "John Smith", "Initial record");
         Doctor doctor = new Doctor("D001", "password", "Dr. C.N Sharma");
-        Administrator admin = new Administrator("A001", "password", "Admin User");
+        Administrators admin = new Administrators("A001", "password", "Admin User");
 
         // Add users to database
         db.addUser(patient);
@@ -19,7 +19,7 @@ public class Main {
         admin.generateBill("P001", 100.00, "Initial Consultation");
         doctor.prescribeMedication("P001", "Paracetamol", "500mg", "Take twice daily");
 
-        User currentUser = null;
+        Users currentUser = null;
 
         while (true) {
             System.out.println("\n=== Hospital Management System ===");
@@ -54,7 +54,7 @@ public class Main {
                         currentUser.handleUserChoice(choice, scanner);
 
                         // Check for logout options
-                        if ((currentUser instanceof Administrator && choice == 8) ||
+                        if ((currentUser instanceof Administrators && choice == 8) ||
                                 (currentUser instanceof Doctor && choice == 6) ||
                                 (currentUser instanceof Patient && choice == 9)) {
                             currentUser = null;

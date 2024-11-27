@@ -1,9 +1,9 @@
 import java.util.*;
 
-public class Administrator extends User {
+public class Administrators extends Users {
     private DatabaseManager db;
 
-    public Administrator(String hospitalID, String password, String name) {
+    public Administrators(String hospitalID, String password, String name) {
         super(hospitalID, password, name);
         this.db = DatabaseManager.getInstance();
     }
@@ -33,7 +33,7 @@ public class Administrator extends User {
                 // Count total appointments and prescriptions
                 int totalAppointments = 0;
                 int totalPrescriptions = 0;
-                for (User user : db.getAllUsers()) {
+                for (Users user : db.getAllUsers()) {
                     if (user instanceof Patient) {
                         totalPrescriptions += db.getPatientPrescriptions(user.getHospitalID()).size();
                         // Count appointments
@@ -48,13 +48,13 @@ public class Administrator extends User {
     }
 
     public void addNurse(String nurseID, String name, String department) {
-        Nurse nurse = new Nurse(nurseID, name, department);
+        Nurses nurse = new Nurses(nurseID, name, department);
         db.addNurse(nurse);
         System.out.println("Nurse added successfully.");
     }
 
     public void viewNurses() {
-        ArrayList<Nurse> nurses = db.getNurses();
+        ArrayList<Nurses> nurses = db.getNurses();
         if (nurses.isEmpty()) {
             System.out.println("No nurses registered.");
         } else {
@@ -82,7 +82,7 @@ public class Administrator extends User {
     }
 
     public void updateUserDetails(String hospitalID, String newName, String newContactInfo) {
-        User user = db.getUser(hospitalID);
+        Users user = db.getUser(hospitalID);
         if (user != null) {
             user.updateProfile(newName, newContactInfo);
             db.updateUser(user);
@@ -110,7 +110,7 @@ public class Administrator extends User {
         switch (choice) {
             case 1:
                 System.out.println("\nDoctors:");
-                for (User user : db.getAllUsers()) {
+                for (Users user : db.getAllUsers()) {
                     if (user instanceof Doctor) {
                         System.out.println(user.getHospitalID() + ": Dr. " + user.getName());
                     }

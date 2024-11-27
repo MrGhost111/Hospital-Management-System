@@ -2,8 +2,8 @@ import java.util.*;
 
 public class DatabaseManager {
     private static DatabaseManager instance;
-    private Map<String, User> users;
-    private ArrayList<Nurse> nurses;
+    private Map<String, Users> users;
+    private ArrayList<Nurses> nurses;
     private ArrayList<Prescription> prescriptions;
     private ArrayList<Bill> bills;
     private Map<String, ArrayList<String>> patientDoctorAssignments;
@@ -23,19 +23,19 @@ public class DatabaseManager {
         return instance;
     }
 
-    public void addUser(User user) {
+    public void addUser(Users user) {
         users.put(user.getHospitalID(), user);
     }
 
-    public User getUser(String hospitalID) {
+    public Users getUser(String hospitalID) {
         return users.get(hospitalID);
     }
 
-    public Collection<User> getAllUsers() {
+    public Collection<Users> getAllUsers() {
         return users.values();
     }
 
-    public void addNurse(Nurse nurse) {
+    public void addNurse(Nurses nurse) {
         nurses.add(nurse);
     }
 
@@ -45,7 +45,7 @@ public class DatabaseManager {
         }
     }
 
-    public ArrayList<Nurse> getNurses() {
+    public ArrayList<Nurses> getNurses() {
         return nurses;
     }
 
@@ -91,7 +91,7 @@ public class DatabaseManager {
         users.remove(hospitalID);
     }
 
-    public void updateUser(User user) {
+    public void updateUser(Users user) {
         users.put(user.getHospitalID(), user);
     }
 }
